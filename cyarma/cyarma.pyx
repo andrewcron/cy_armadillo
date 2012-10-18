@@ -10,6 +10,7 @@ cdef extern from "Armadillo" namespace "arma":
     # matrix class (double)
     cdef cppclass mat:
         mat(double * aux_mem, int n_rows, int n_cols, bool copy_aux_mem, bool strict)
+        mat(int n_rows, int n_cols)
         mat()
         # attributes
         int n_rows
@@ -31,8 +32,10 @@ cdef extern from "Armadillo" namespace "arma":
         mat resize(int, int)
         double * memptr()
         # opperators
-        double operator[](int)
+        double& operator[](int)
         mat operator*(mat)
+        mat operator%(mat)
+        vec operator*(vec)
         mat operator*(double)
         mat operator+(mat)
         mat operator+(double)
@@ -42,10 +45,15 @@ cdef extern from "Armadillo" namespace "arma":
     # vector class (double)
     cdef cppclass vec:
         vec(double * aux_mem, int number_of_elements, bool copy_aux_mem, bool strict)
+        vec(int)
+        vec()
         # attributes
         int n_elem
         # opperators
-        double operator[](int)
+        double& operator[](int)
+        vec operator%(vec)
+        vec operator+(vec)
+        vec operator/(vec)
         # functions
         double * memptr()
     ## TODO: cude class (double)
@@ -86,7 +94,6 @@ cdef vec numpy_to_vec(np.ndarray[np.double_t, ndim=1] x):
     cdef vec *ar = new vec(<double*> x.data, x.shape[0], False, True)
     return deref(ar)
 
-
 ##### Converting back to python arrays, must pass preallocated memory or None
 # all data will be copied since numpy doesn't own the data and can't clean up
 # otherwise. Maybe this can be improved. #######
@@ -102,7 +109,7 @@ cdef np.ndarray[np.double_t, ndim=2] mat_to_numpy(mat X, np.ndarray[np.double_t,
     return D
 
 @cython.boundscheck(False)
-cdef np.ndarray[np.double_t, ndim=1] vec_to_numpy(mat X, np.ndarray[np.double_t, ndim=1] D):
+cdef np.ndarray[np.double_t, ndim=1] vec_to_numpy(vec X, np.ndarray[np.double_t, ndim=1] D):
     cdef double * Xptr = X.memptr()
     
     if D is None:
