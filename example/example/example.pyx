@@ -4,7 +4,9 @@ cimport numpy as np
 include "cyarma.pyx"
 
 def example(np.ndarray[np.double_t, ndim=2] X):
+
     cdef mat aX = numpy_to_mat(X)
+
     cdef mat XX = aX.t() * aX
     cdef mat ch = chol(XX)
     ch.raw_print()
