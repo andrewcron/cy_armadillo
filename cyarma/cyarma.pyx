@@ -132,11 +132,11 @@ cdef vec * numpy_to_vec(np.ndarray[np.double_t, ndim=1] x):
 
 #### Get subviews #####
 
-cdef vec * mat_col_view(mat & x, int col):
+cdef vec * mat_col_view(mat * x, int col) nogil:
     cdef vec *ar = new vec(x.memptr()+x.n_rows*col, x.n_rows, False, True)
     return ar
 
-cdef mat * cube_slice_view(cube & x, int slice):
+cdef mat * cube_slice_view(cube * x, int slice) nogil:
     cdef mat *ar = new mat(x.memptr() + x.n_rows*x.n_cols*slice,
                            x.n_rows, x.n_cols, False, True)
     return ar
