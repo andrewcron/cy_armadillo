@@ -6,7 +6,7 @@ from cython.operator cimport dereference as deref
 
 from libcpp cimport bool
 
-cdef extern from "Armadillo" namespace "arma" nogil:
+cdef extern from "armadillo" namespace "arma" nogil:
     # matrix class (double)
     cdef cppclass mat:
         mat(double * aux_mem, int n_rows, int n_cols, bool copy_aux_mem, bool strict) nogil
