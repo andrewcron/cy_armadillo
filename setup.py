@@ -9,7 +9,7 @@ from distutils.extension import Extension
 from numpy import get_include
 
 setup(name='cyarma',
-      version='0.1',
+      version='0.2',
       packages=['cyarma'],
       package_dir={'cyarma': 'cyarma'},
       description='Wrapper to Armadillo',
