@@ -1,4 +1,3 @@
-
 This software is released under an open source "BSD" style license:
 
 Copyright (c) 2012, Andrew Cron (andrew.j.cron@gmail.com)
@@ -15,7 +14,7 @@ modification, are permitted provided that the following conditions are met:
       names of its contributors may be used to endorse or promote products
       derived from this software without specific prior written permission.
 
-THIS SOFTWARE IS PROVIDED BY Shane Legg ''AS IS'' AND ANY
+THIS SOFTWARE IS PROVIDED BY Andrew Cron ''AS IS'' AND ANY
 EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
 DISCLAIMED. IN NO EVENT SHALL Shane Legg BE LIABLE FOR ANY
