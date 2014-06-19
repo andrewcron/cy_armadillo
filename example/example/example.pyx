@@ -5,9 +5,9 @@ include "cyarma.pyx"
 
 def example(np.ndarray[np.double_t, ndim=2] X):
 
-    cdef mat aX = numpy_to_mat(X)
+    cdef mat *aX = numpy_to_mat(X)
 
-    cdef mat XX = aX.t() * aX
+    cdef mat XX = aX.t() * cython.operator.dereference(aX)
     cdef mat ch = chol(XX)
     ch.raw_print()
     print np.linalg.cholesky(np.dot(X.T,X))

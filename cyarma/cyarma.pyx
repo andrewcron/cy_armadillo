@@ -114,7 +114,7 @@ cdef extern from "armadillo" namespace "arma" nogil:
 ##### Tools to convert numpy arrays to armadillo arrays ######
 cdef mat * numpy_to_mat(np.ndarray[np.double_t, ndim=2] X):
     if not X.flags.f_contiguous:
-        X = X.copy(order="F")
+        X = X.copy("F")
     cdef mat *aR  = new mat(<double*> X.data, X.shape[0], X.shape[1], False, True)
     return aR
 
