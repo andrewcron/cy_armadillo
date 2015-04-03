@@ -8,6 +8,7 @@ from distutils.core import setup
 from distutils.extension import Extension
 from numpy import get_include
 
+
 setup(name='cyarma',
       version='0.2',
       packages=['cyarma'],
@@ -22,5 +23,5 @@ setup(name='cyarma',
                 'scipy (>=0.6)',
                 'matplotlib (>=1.0)',
                 'cython (>=0.15.1)'],
-      package_data={'cyarma': ['*.pyx']},
+      package_data={'cyarma': ['*.pyx', '*.pxd']},
       )

@@ -2,12 +2,14 @@ import numpy as np
 cimport numpy as np
 
 include "cyarma.pyx"
+#from cyarma cimport *
 
 def example(np.ndarray[np.double_t, ndim=2] X):
 
-    cdef mat *aX = numpy_to_mat(X)
+    cdef mat aX = numpy_to_mat_d(X)
 
-    cdef mat XX = aX.t() * cython.operator.dereference(aX)
+    #cdef mat XX = aX.t() * cython.operator.dereference(aX)
+    cdef mat XX = aX.t() * aX
     cdef mat ch = chol(XX)
     ch.raw_print()
     print np.linalg.cholesky(np.dot(X.T,X))
@@ -21,5 +23,8 @@ def example(np.ndarray[np.double_t, ndim=2] X):
             test[i,j] = i+j
     cdef mat *test2 = new mat(<double*> ctest, 10, 10, False, True)
     test2.raw_print()
-    
+
+    del test2
+    #del aX
+
     return Y
