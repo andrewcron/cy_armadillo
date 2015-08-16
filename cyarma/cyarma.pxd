@@ -154,6 +154,6 @@ cdef mat * cube_slice_view(cube * x, int slice) nogil
 
 cdef mat cube_slice_view_d(cube * x, int slice) nogil
 
-cdef np.ndarray[np.double_t, ndim=2] mat_to_numpy(mat & X, np.ndarray[np.double_t, ndim=2] D)
+cdef np.ndarray[np.double_t, ndim=2] mat_to_numpy(const mat & X, np.ndarray[np.double_t, ndim=2] D)
 
-cdef np.ndarray[np.double_t, ndim=1] vec_to_numpy(vec & X, np.ndarray[np.double_t, ndim=1] D)
+cdef np.ndarray[np.double_t, ndim=1] vec_to_numpy(const vec & X, np.ndarray[np.double_t, ndim=1] D)

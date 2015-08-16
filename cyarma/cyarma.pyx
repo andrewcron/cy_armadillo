@@ -211,8 +211,8 @@ cdef mat cube_slice_view_d(cube * x, int slice) nogil:
 # all data will be copied since numpy doesn't own the data and can't clean up
 # otherwise. Maybe this can be improved. #######
 @cython.boundscheck(False)
-cdef np.ndarray[np.double_t, ndim=2] mat_to_numpy(mat & X, np.ndarray[np.double_t, ndim=2] D):
-    cdef double * Xptr = X.memptr()
+cdef np.ndarray[np.double_t, ndim=2] mat_to_numpy(const mat & X, np.ndarray[np.double_t, ndim=2] D):
+    cdef const double * Xptr = X.memptr()
     
     if D is None:
         D = np.empty((X.n_rows, X.n_cols), dtype=np.double, order="F")
@@ -222,8 +222,8 @@ cdef np.ndarray[np.double_t, ndim=2] mat_to_numpy(mat & X, np.ndarray[np.double_
     return D
 
 @cython.boundscheck(False)
-cdef np.ndarray[np.double_t, ndim=1] vec_to_numpy(vec & X, np.ndarray[np.double_t, ndim=1] D):
-    cdef double * Xptr = X.memptr()
+cdef np.ndarray[np.double_t, ndim=1] vec_to_numpy(const vec & X, np.ndarray[np.double_t, ndim=1] D):
+    cdef const double * Xptr = X.memptr()
     
     if D is None:
         D = np.empty(X.n_elem, dtype=np.double)
